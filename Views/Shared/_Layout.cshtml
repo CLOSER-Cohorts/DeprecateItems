@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/Scripts/foundation")
+    @Scripts.Render("~/Scripts")
+
+    <link href="@Url.Content("~/Content/Study-Filter.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/categories-menu.js")"></script>
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">      
+        <div class="container" style="border:solid; border-width:thin; padding:5px">
+            <div class="navbar-collapse collapse">
+                <button style="width:100%" onclick="location.href='@Url.Action("Index", "Dataset")';return false;"><h5>Deprecate Items</h5></button>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content" style="margin-top:40px; font-size:12px">
+        @RenderBody()
+     </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/prettify")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

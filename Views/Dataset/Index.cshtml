@@ -1,0 +1,151 @@
+﻿@model ColecticaSdkMvc.Models.DataSetModel
+@{
+    ViewBag.Title = "ItemType";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<style type="text/css">
+    ul {
+        list-style-type: none;
+    }
+</style>
+
+<div style="margin-bottom:20px">
+    <h3>Deprecating Items</h3>
+</div>
+
+@using (Html.BeginForm("Index", "Dataset", FormMethod.Post, new { enctype = "multipart/form-data", name = "MyForm", id = "SearchForm2" }))
+{
+
+    <div style="margin-top:10px; margin-bottom:10px; padding:10px; border-style:solid; border-width:thin; width:100%">
+
+        <label style="margin-left:5px"><strong>URN</strong></label>
+        @Html.TextBoxFor(model => model.Urn, new { style = "margin-left:5px; width:500px; font-size:small" })
+        <label style="margin-left:20px"><strong>Agency/Identifier</strong></label>
+        <div style="float:right">
+            <input name="command" type="submit" value="Search" id="search" , style="float:right; font-size:small; margin-left:10px; margin-right:10px" />
+        </div>
+        <input name="command" type="submit" value="Upload URN's" id="upload" , style="float:right; font-size:small; margin-left:10px; margin-right:10px" />
+        <input type="file" value="Select URN's" id="postedFile" name="postedFile" accept=".csv" style="float:right" />
+    </div>
+
+    if (Model.Urns.Count() != 0)
+    {
+        <table border="0" style="width:40%">
+            <thead>
+                <tr>
+                    <th align="left" style="width:30%; font-size:medium">URN</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Urns.Count(); i++)
+                {
+                    @Html.TextBoxFor(modelItem => Model.Urns[i], new { style = "width:98%", @type = "hidden" })
+
+                    <tr>
+                        <td style="width:30%; font-size:medium">
+                            @Html.DisplayFor(modelItem => Model.Urns[i], new { style = "width:98%" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <input name="command" type="submit" value="Deprecate All" id="process" , style="float:left; font-size:small; margin:10px" />
+    }
+    else
+    {
+        if (Model.DataSet.Count() != 0)
+            {
+
+                <div style="border: 1px solid black; padding-top:10px;width:60%; float:left">
+                    <table border="0" style="width:100%; margin-left:10px">
+                        <thead>
+                            <tr>
+                                <th align="left" style="width:5%; font-size:medium">Agency ID</th>
+                                <th align="left" style="width:30%; font-size:medium">Identifier</th>
+                                <th align="left" style="width:5%; font-size:medium">Version</th>
+                                <th align="left" style="width:30%; font-size:medium">Item</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.DataSet)
+                            {
+
+                            <tr>
+                                <td style="width:10%; font-size:medium">
+                                    @item.Agency
+                                </td>
+                                <td style="width:30%; font-size:medium">
+                                    @item.Identifier;
+                                </td>
+                                <td style="width:10%; font-size:medium">
+                                    @item.Version
+                                </td>
+                                <td style="width:30%; font-size:medium">
+                                    @item.ItemType
+                                </td>
+                                <td style="width:30%; font-size:medium">
+                                    @item.IsDeprecated
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        if (Model.DataSet.Count() != 0)
+        {
+            for (int i = 0; i < Model.DataSet.Count(); i++)
+            {
+                @Html.TextBoxFor(modelItem => Model.DataSet[i].Agency, new { style = "width:98%", @type = "hidden" })
+                @Html.TextBoxFor(modelItem => Model.DataSet[i].Identifier, new { style = "width:98%", @type = "hidden" })
+                @Html.TextBoxFor(modelItem => Model.DataSet[i].Version, new { style = "width:98%", @type = "hidden" })
+                @Html.TextBoxFor(modelItem => Model.DataSet[i].ItemType, new { style = "width:98%", @type = "hidden" })
+
+            }
+        }
+        if (Model.ItemTypes.Count() != 0)
+        {
+
+            <div style="margin-left:20px; padding-top:10px;width:100%; float:left">
+                <h4><strong>@Model.DisplayLabel</strong></h4>
+                <table border="0" style="width:40%">
+                    <thead>
+                        <tr>
+                            <th align="left" style="width:30%; font-size:medium">Item Type</th>
+                            <th align="right" style="width:5%; font-size:medium; text-align:right">Count</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.ItemTypes.Count(); i++)
+                        {
+                            @Html.TextBoxFor(modelItem => Model.ItemTypes[i].Id, new { style = "width:98%", @type = "hidden" })
+                            @Html.TextBoxFor(modelItem => Model.ItemTypes[i].QuestionValue, new { style = "width:98%", @type = "hidden" })
+
+                            <tr>
+                                <td style="width:30%; font-size:medium">
+                                    @Html.DisplayFor(modelItem => Model.ItemTypes[i].Id, new { style = "width:98%" })
+                                </td>
+                                @if (@Model.ItemTypes[i].Id != "Total")
+                                {
+                                    <td align="right" style="width:5%; font-size:medium">
+                                        @Html.DisplayFor(modelItem => Model.ItemTypes[i].QuestionValue, new { style = "width:98%" })
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td align="right" style="width:5%; font-size:medium; border-top: 1px solid black;border-bottom: 1px solid black">
+                                        @Html.DisplayFor(modelItem => Model.ItemTypes[i].QuestionValue, new { style = "width:98%" })
+                                    </td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <input name="command" type="submit" value="Deprecate" id="process" , style="float:left; font-size:small; margin:10px" />
+            </div>
+        }
+    }
+}
