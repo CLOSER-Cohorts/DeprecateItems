@@ -11,12 +11,17 @@
     }
 </style>
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+
 <div style="margin-bottom:20px">
     <h3>Deprecating Items</h3>
 </div>
 
 @using (Html.BeginForm("Index", "Dataset", FormMethod.Post, new { enctype = "multipart/form-data", name = "MyForm", id = "SearchForm2" }))
 {
+    <input type="hidden" value="@ViewBag.selectedItems" name="selectedItems" id="selectedItems" />
 
     <div style="margin-top:10px; margin-bottom:10px; padding:10px; border-style:solid; border-width:thin; width:100%">
 
@@ -25,6 +30,8 @@
         <label style="margin-left:20px"><strong>Agency/Identifier</strong></label>
         <div style="float:right">
             <input name="command" type="submit" value="Search" id="search" , style="float:right; font-size:small; margin-left:10px; margin-right:10px" />
+            <input name="command" type="submit" value="Get Set" id="getset" , style="float:right; font-size:small; margin-left:10px; margin-right:10px" />
+            <input name="command" type="submit" value="Display Tree" id="tree" , style="float:right; font-size:small; margin-left:10px; margin-right:10px" />
         </div>
         <input name="command" type="submit" value="Upload URN's" id="upload" , style="float:right; font-size:small; margin-left:10px; margin-right:10px" />
         <input type="file" value="Select URN's" id="postedFile" name="postedFile" accept=".csv" style="float:right" />
@@ -56,45 +63,48 @@
     else
     {
         if (Model.DataSet.Count() != 0)
-            {
-
-                <div style="border: 1px solid black; padding-top:10px;width:60%; float:left">
+        {
+            <div style="border: 1px solid black; padding-top:10px;width:100%; float:left">
                     <table border="0" style="width:100%; margin-left:10px">
                         <thead>
                             <tr>
                                 <th align="left" style="width:5%; font-size:medium">Agency ID</th>
-                                <th align="left" style="width:30%; font-size:medium">Identifier</th>
+                                <th align="left" style="width:25%; font-size:medium">Identifier</th>
                                 <th align="left" style="width:5%; font-size:medium">Version</th>
-                                <th align="left" style="width:30%; font-size:medium">Item</th>
-                                <th></th>
+                                <th align="left" style="width:20%; font-size:medium">Item</th>
+                                <th style="width:5%"></th>
+                                <th style="width:25%"></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model.DataSet)
                             {
 
-                            <tr>
-                                <td style="width:10%; font-size:medium">
-                                    @item.Agency
-                                </td>
-                                <td style="width:30%; font-size:medium">
-                                    @item.Identifier;
-                                </td>
-                                <td style="width:10%; font-size:medium">
-                                    @item.Version
-                                </td>
-                                <td style="width:30%; font-size:medium">
-                                    @item.ItemType
-                                </td>
-                                <td style="width:30%; font-size:medium">
-                                    @item.IsDeprecated
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td style="width:10%; font-size:medium">
+                                        @item.Agency
+                                    </td>
+                                    <td style="width:25%; font-size:medium">
+                                        @item.Identifier
+                                    </td>
+                                    <td style="width:10%; font-size:medium">
+                                        @item.Version
+                                    </td>
+                                    <td style="width:20%; font-size:medium">
+                                        @item.ItemType
+                                    </td>
+                                    <td style="width:5%; font-size:medium">
+                                        @item.IsDeprecated
+                                    </td>
+                                    <td style="width:25%; font-size:medium">
+                                        @item.Referencing
+                                    </td>
+                                </tr>
                             }
                         </tbody>
                     </table>
                 </div>
-            }
+        }
         if (Model.DataSet.Count() != 0)
         {
             for (int i = 0; i < Model.DataSet.Count(); i++)
@@ -148,4 +158,8 @@
             </div>
         }
     }
+
+
 }
+
+

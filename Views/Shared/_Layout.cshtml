@@ -10,14 +10,15 @@
     @Scripts.Render("~/Scripts")
 
     <link href="@Url.Content("~/Content/Study-Filter.css")" rel="stylesheet" type="text/css" />
-    <script src="@Url.Content("~/Scripts/categories-menu.js")"></script>
+    <script src="@Url.Content("~/Scripts/categories-menu.js")"></script> 
 
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">      
         <div class="container" style="border:solid; border-width:thin; padding:5px">
             <div class="navbar-collapse collapse">
-                <button style="width:100%" onclick="location.href='@Url.Action("Index", "Dataset")';return false;"><h5>Deprecate Items</h5></button>
+                <button style="width:48%" onclick="location.href='@Url.Action("Index", "Dataset")';return false;"><h5>Deprecate Items</h5></button>
+                <button style="width:48%" onclick="location.href='@Url.Action("Tree", "Dataset")';return false;"><h5>Dataset Tree</h5></button>
             </div>
         </div>
     </div>

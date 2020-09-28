@@ -148,6 +148,7 @@
     <Compile Include="Models\ItemModel.cs" />
     <Compile Include="Models\Match.cs" />
     <Compile Include="Models\StudyUnitModel.cs" />
+    <Compile Include="Models\TreeViewNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\ClientHelper.cs" />
     <Compile Include="Utility\Helper.cs" />
@@ -189,9 +190,18 @@
     <Content Include="WebDist.Release.config">
       <DependentUpon>WebDist.config</DependentUpon>
     </Content>
+    <Content Include="Web.config" />
+    <Content Include="Views\Dataset\Tree.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Variable\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

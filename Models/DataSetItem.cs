@@ -29,5 +29,6 @@ namespace ColecticaSdkMvc.Models
         public long Version { get; set; }
         public string ItemType { get; set; }
         public bool IsDeprecated { get; set; }
+        public string Referencing { get; set; }
     }
 }
