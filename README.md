@@ -15,4 +15,4 @@ If you are deprecating a single dataset enter the URN and click on the Search bu
 
 If you are deprecating multiple datasets using a csv. Select the csv of datasets to be deprecated.  Click on the Upload URN's button. This will display the list of datasets from the selected csv. Click on the Deprecate All button at the base of the screen to deprecate all items in the list of datasets
 
-These process will also create a powershell script to be used to remove variables within dataset(s). To use this script you will need to copy it to staging server to be used in powershell.
+These process will also create a powershell script to be used to remove variables within dataset(s) form Elastic Search. To use this script you will need to copy it to staging server to be used in powershell.
