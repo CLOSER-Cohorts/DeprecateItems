@@ -11,8 +11,14 @@ The format of input for datasets is
 
 AgencyId/Identifier
 
-If you are deprecating a single dataset enter the URN and click on the Search button. This will display a summary of all the items based on Item type. Click on the deprecate button on the base of the screen to deprecate all the items within this dataset.
+Deprecating a single dataset 
 
-If you are deprecating multiple datasets using a csv. Select the csv of datasets to be deprecated.  Click on the Upload URN's button. This will display the list of datasets from the selected csv. Click on the Deprecate All button at the base of the screen to deprecate all items in the list of datasets
+- Enter the URN and click on the Search button. This will display a summary of all the items based on Item type. C
+- lick on the deprecate button on the base of the screen to deprecate all the items within this dataset.
 
-These process will also create a powershell script to be used to remove variables within dataset(s) form Elastic Search. To use this script you will need to copy it to staging server to be used in powershell.
+Deprecating multiple datasets using a csv. 
+
+- Select the csv of datasets to be deprecated.  
+- Click on the Upload URN's button. This will display the list of datasets from the selected csv. Click on the Deprecate All button at the base of the screen to deprecate all items in the list of datasets
+
+These will also reate a powershell script to be used to remove variables within dataset(s) from ElasticSearch. 
